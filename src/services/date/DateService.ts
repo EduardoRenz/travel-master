@@ -1,4 +1,4 @@
-import { IntlDateService } from "./date/IntlDateService"
+import { IntlDateService } from "./IntlDateService"
 
 export interface DateService {
   formatDateToLongMonth(date: Date): string

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Activity } from "../../domain/Activity"
-  import { DateServiceFactory } from "../../services/DateService"
+  import { DateServiceFactory } from "../../services/date/DateService"
   export let item: Activity
   export let firstDay: Date
 
