@@ -23,8 +23,12 @@
       // Inicialize o mapa
       map = L.map(mapElement).setView([0, 0], 2)
 
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      // Use um estilo de mapa mais claro
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: "abcd",
+        maxZoom: 19,
       }).addTo(map)
 
       updateMap()
@@ -74,5 +78,25 @@
   .map {
     width: 100%;
     height: 100%;
+  }
+
+  /* Adicione estes estilos para melhorar a aparência do mapa escuro */
+  :global(.leaflet-popup-content-wrapper) {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    border-radius: var(--border-radius-md);
+  }
+
+  :global(.leaflet-popup-tip) {
+    background-color: var(--color-background);
+  }
+
+  :global(.leaflet-popup-content) {
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+  }
+
+  :global(.leaflet-container) {
+    font-family: var(--font-family-primary);
   }
 </style>
