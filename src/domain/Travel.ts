@@ -4,4 +4,5 @@ export interface Travel {
   date: string
   image: string
   concluded: boolean
+  place: string // Nova propriedade adicionada
 }
