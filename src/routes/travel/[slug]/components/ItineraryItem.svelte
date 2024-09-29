@@ -1,14 +1,7 @@
 <script lang="ts">
-  export let item: {
-    day: number
-    date: string
-    address: string
-    description: string
-    weather: {
-      icon: string
-      temperature: number
-    }
-  }
+  import type { Activity } from "../../../../domain/Travel"
+
+  export let item: Activity
 </script>
 
 <li>

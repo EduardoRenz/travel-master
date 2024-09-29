@@ -1,8 +1,20 @@
 export interface Travel {
   id: number
   title: string
-  date: string
+  date: Date
   image: string
   concluded: boolean
-  place: string // Nova propriedade adicionada
+  place: string
+  itinerary: Activity[]
+}
+
+export interface Activity {
+  day: number
+  date: Date
+  address: string
+  description: string
+  weather: {
+    icon: string
+    temperature: number
+  }
 }
