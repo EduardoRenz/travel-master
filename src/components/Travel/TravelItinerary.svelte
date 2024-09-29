@@ -1,15 +1,12 @@
 <script lang="ts">
-  import { format, addDays } from "date-fns"
-  import { ptBR } from "date-fns/locale"
-  import type { Activity, Travel } from "../../domain/Travel"
+  import type { Travel } from "../../domain/Travel"
   import { createEventDispatcher } from "svelte"
   import ItineraryItem from "./ItineraryItem.svelte"
+  import type { Activity } from "../../domain/Activity"
 
   export let travel: Travel
 
   const dispatch = createEventDispatcher()
-
-  const startDate = travel.date
 
   const itinerary = travel.itinerary
 
@@ -22,7 +19,7 @@
   <h2>Itinerário</h2>
   <ul class="timeline">
     {#each itinerary as item}
-      <ItineraryItem {item} on:click={() => onItinerarySelected(item)} />
+      <ItineraryItem {item} on:click={() => onItinerarySelected(item)} firstDay={travel.date} />
     {/each}
   </ul>
 </div>

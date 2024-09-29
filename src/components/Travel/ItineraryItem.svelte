@@ -1,7 +1,8 @@
 <script lang="ts">
-  import type { Activity } from "../../domain/Travel"
+  import type { Activity } from "../../domain/Activity"
 
   export let item: Activity
+  export let firstDay: Date
 </script>
 
 <li>
@@ -16,7 +17,7 @@
     tabindex="0"
     role="button"
   >
-    <div class="timeline-badge">{item.day}</div>
+    <div class="timeline-badge">{item.getDayFromFirstDay(firstDay)}</div>
     <div class="timeline-panel">
       <div class="timeline-heading">
         <div class="weather-info">
