@@ -3,10 +3,10 @@
   import type { Travel } from "../../../domain/Travel"
   import { InMemoryTravelGateway } from "../../../gateways/InMemoryTravelGateway"
   import { page } from "$app/stores"
-  import TravelCard from "./components/TravelCard.svelte"
-  import TravelMap from "./components/TravelMap.svelte"
-  import TravelItinerary from "./components/TravelItinerary.svelte"
-  import LoadingSpinner from "./components/LoadingSpinner.svelte"
+  import TravelCard from "../../../components/Travel/TravelCard.svelte"
+  import LoadingSpinner from "../../../components/Travel/LoadingSpinner.svelte"
+  import TravelItinerary from "../../../components/Travel/TravelItinerary.svelte"
+  import TravelMap from "../../../components/Travel/TravelMap.svelte"
 
   const travelGateway = new InMemoryTravelGateway()
   let travel: Travel | undefined

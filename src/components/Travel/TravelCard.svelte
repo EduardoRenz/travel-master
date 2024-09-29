@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Travel } from "../../../../domain/Travel"
+  import type { Travel } from "../../domain/Travel"
   import TravelImage from "./TravelImage.svelte"
   import TravelContent from "./TravelContent.svelte"
 

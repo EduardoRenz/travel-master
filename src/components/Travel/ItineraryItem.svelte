@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Activity } from "../../../../domain/Travel"
+  import type { Activity } from "../../domain/Travel"
 
   export let item: Activity
 </script>

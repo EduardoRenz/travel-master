@@ -1,7 +1,7 @@
 <script lang="ts">
   import { format, addDays } from "date-fns"
   import { ptBR } from "date-fns/locale"
-  import type { Activity, Travel } from "../../../../domain/Travel"
+  import type { Activity, Travel } from "../../domain/Travel"
   import { createEventDispatcher } from "svelte"
   import ItineraryItem from "./ItineraryItem.svelte"
 

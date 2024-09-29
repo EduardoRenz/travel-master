@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let date: string
+  export let date: Date
   export let concluded: boolean
 </script>
 
