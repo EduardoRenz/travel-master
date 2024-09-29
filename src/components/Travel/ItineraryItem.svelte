@@ -1,8 +1,10 @@
 <script lang="ts">
   import type { Activity } from "../../domain/Activity"
-
+  import { DateServiceFactory } from "../../services/DateService"
   export let item: Activity
   export let firstDay: Date
+
+  const dateService = DateServiceFactory.getInstance()
 </script>
 
 <li>
@@ -24,7 +26,7 @@
           <span class="weather-icon">{item.weather.icon}</span>
           <span class="temperature">{item.weather.temperature}°C</span>
         </div>
-        <h4>{item.date}</h4>
+        <h4>{dateService.formatDateToLongDayMonth(item.date)}</h4>
         <h5>{item.address}</h5>
       </div>
       <div class="timeline-body">
