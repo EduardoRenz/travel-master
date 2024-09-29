@@ -10,20 +10,27 @@
 
   const travelGateway = new InMemoryTravelGateway()
   let travel: Travel | undefined
+  let selectedItineraryItem: any | undefined
+
   onMount(async () => {
     travel = await travelGateway.getTravel(Number($page.params.slug))
   })
+
+  function handleItinerarySelected(event: CustomEvent<any>) {
+    selectedItineraryItem = event.detail
+    console.log("Itinerário selecionado:", selectedItineraryItem)
+  }
 </script>
 
 <div class="travel-container">
   {#if travel}
     <TravelCard {travel} />
     <div class="travel-content">
-      <div class="map-column">
-        <TravelMap place={travel.place} />
-      </div>
       <div class="itinerary-column">
-        <TravelItinerary startDate={travel.date} />
+        <TravelItinerary {travel} on:itinerarySelected={handleItinerarySelected} />
+      </div>
+      <div class="map-column">
+        <TravelMap place={selectedItineraryItem ? selectedItineraryItem.address : travel.place} />
       </div>
     </div>
   {:else}
