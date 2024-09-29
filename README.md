@@ -1,6 +1,6 @@
 # Travel Master: Your Ultimate Travel Planner
 
-TravelEase is a comprehensive travel planning application built with [Next.js](https://nextjs.org). It helps users plan, organize, and manage their trips with ease.
+TravelEase is a comprehensive travel planning application built with [Svelte](https://svelte.dev). It helps users plan, organize, and manage their trips with ease.
 
 ## Features
 
@@ -19,11 +19,6 @@ TravelEase is a comprehensive travel planning application built with [Next.js](h
 Follow these steps to set up and run the Travel Master project on your local machine:
 
 1. **Clone the repository**
-
-   ```
-   git clone https://github.com/your-username/travel-master.git
-   cd travel-master
-   ```
 
 2. **Install dependencies**
 
