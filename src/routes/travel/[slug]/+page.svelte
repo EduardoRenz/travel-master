@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte"
   import type { Travel } from "../../../domain/Travel"
-  import { InMemoryTravelGateway } from "../../../gateways/InMemoryTravelGateway"
+  import { InMemoryTravelGateway } from "../../../gateways/TravelGateway/InMemoryTravelGateway"
   import { page } from "$app/stores"
   import TravelCard from "../../../components/Travel/TravelCard.svelte"
   import LoadingSpinner from "../../../components/Travel/LoadingSpinner.svelte"

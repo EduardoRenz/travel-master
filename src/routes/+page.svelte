@@ -2,7 +2,7 @@
   import SearchBar from "../components/home/SearchBar.svelte"
   import TravelCard from "../components/home/TravelCard.svelte"
   import { writable } from "svelte/store"
-  import { InMemoryTravelGateway } from "../gateways/InMemoryTravelGateway"
+  import { InMemoryTravelGateway } from "../gateways/TravelGateway/InMemoryTravelGateway"
   import { onMount } from "svelte"
   import type { Travel } from "../domain/Travel"
 

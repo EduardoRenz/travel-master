@@ -1,5 +1,5 @@
-import { Activity } from "../domain/Activity"
-import type { Travel } from "../domain/Travel"
+import { Activity } from "../../domain/Activity"
+import type { Travel } from "../../domain/Travel"
 import type { TravelGateway } from "./TravelGateway"
 
 export class InMemoryTravelGateway implements TravelGateway {

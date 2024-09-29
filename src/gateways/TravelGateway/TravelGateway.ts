@@ -1,4 +1,4 @@
-import type { Travel } from "../domain/Travel"
+import type { Travel } from "../../domain/Travel"
 
 export interface TravelGateway {
   getTravels(): Promise<Travel[]>
