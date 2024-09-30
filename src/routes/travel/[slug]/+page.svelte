@@ -30,7 +30,12 @@
         <TravelItinerary {travel} on:itinerarySelected={handleItinerarySelected} />
       </div>
       <div class="map-column">
-        <TravelMap place={selectedItineraryItem ? selectedItineraryItem.address : travel.place} />
+        <TravelMap
+          places={travel?.itinerary.map((item) => ({
+            name: item.address,
+            day: item.getDayFromFirstDay(travel?.date ?? new Date()),
+          })) ?? []}
+        />
       </div>
     </div>
   {:else}

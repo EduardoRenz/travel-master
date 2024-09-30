@@ -1,13 +1,12 @@
 <script lang="ts">
-  import { onMount, afterUpdate } from "svelte"
+  import { onMount } from "svelte"
   import { browser } from "$app/environment"
 
-  export let place: string
+  export let places: { name: string; day: number }[]
 
   let mapElement: HTMLElement
   let L: any
   let map: any
-  let currentMarker: any
 
   onMount(async () => {
     if (browser) {
@@ -23,7 +22,6 @@
       // Inicialize o mapa
       map = L.map(mapElement).setView([0, 0], 2)
 
-      // Use um estilo de mapa mais claro
       L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -31,37 +29,37 @@
         maxZoom: 19,
       }).addTo(map)
 
-      updateMap()
-    }
-  })
-
-  afterUpdate(() => {
-    if (map) {
-      updateMap()
+      await updateMap()
     }
   })
 
   async function updateMap() {
-    // Use a API de geocodificação do OpenStreetMap (Nominatim)
-    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(place)}`)
-    const data = await response.json()
+    const bounds = L.latLngBounds()
 
-    if (data && data.length > 0) {
-      const lat = parseFloat(data[0].lat)
-      const lon = parseFloat(data[0].lon)
-      map.setView([lat, lon], 13)
+    for (const place of places) {
+      const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(place.name)}`)
+      const data = await response.json()
 
-      // Remove o marcador anterior, se existir
-      if (currentMarker) {
-        map.removeLayer(currentMarker)
+      if (data && data.length > 0) {
+        const lat = parseFloat(data[0].lat)
+        const lon = parseFloat(data[0].lon)
+
+        const marker = L.marker([lat, lon], {
+          icon: L.divIcon({
+            className: "custom-div-icon",
+            html: `<div class="marker-pin">${place.day}</div>`,
+            iconSize: [30, 42],
+            iconAnchor: [15, 42],
+          }),
+        }).addTo(map)
+
+        marker.bindPopup(`Dia ${place.day}: ${place.name}`)
+        bounds.extend([lat, lon])
       }
-
-      // Adiciona o novo marcador
-      currentMarker = L.marker([lat, lon]).addTo(map)
-      currentMarker.bindPopup(place).openPopup()
-    } else {
-      console.error("Não foi possível encontrar o local")
     }
+
+    // Ajuste a visualização do mapa para incluir todos os marcadores
+    map.fitBounds(bounds, { padding: [30, 30] })
   }
 </script>
 
@@ -80,7 +78,34 @@
     height: 100%;
   }
 
-  /* Adicione estes estilos para melhorar a aparência do mapa escuro */
+  :global(.custom-div-icon) {
+    background: none;
+    border: none;
+  }
+
+  :global(.marker-pin) {
+    width: 30px;
+    height: 30px;
+    border-radius: 50% 50% 50% 0;
+    background: var(--color-primary);
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: -15px 0 0 -15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :global(.marker-pin::after) {
+    content: attr(data-day);
+    transform: rotate(45deg);
+    color: white;
+    font-weight: bold;
+  }
+
+  /* Estilos para o popup */
   :global(.leaflet-popup-content-wrapper) {
     background-color: var(--color-background);
     color: var(--color-text-primary);
