@@ -1,7 +1,4 @@
-type Weather = {
-  icon: string
-  temperature: number
-}
+import type { Weather } from "./Weather"
 
 export class Activity {
   public date: Date
