@@ -1,5 +1,3 @@
-import type { Weather } from "./Weather"
-
 export class Activity {
   public date: Date
   public address: string
