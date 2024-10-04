@@ -4,13 +4,11 @@ export class Activity {
   public date: Date
   public address: string
   public description: string
-  public weather: Weather
 
-  constructor(params: { date: Date; address: string; description: string; weather: Weather }) {
+  constructor(params: { date: Date; address: string; description: string }) {
     this.date = params.date
     this.address = params.address
     this.description = params.description
-    this.weather = params.weather
   }
 
   public getDayFromFirstDay(firstDay: Date): number {

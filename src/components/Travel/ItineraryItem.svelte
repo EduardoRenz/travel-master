@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Activity } from "../../domain/Activity"
   import { DateServiceFactory } from "../../services/date/DateService"
+  import Weather from "./Weather.svelte"
   export let item: Activity
   export let firstDay: Date
 
@@ -22,10 +23,7 @@
     <div class="timeline-badge">{item.getDayFromFirstDay(firstDay)}</div>
     <div class="timeline-panel">
       <div class="timeline-heading">
-        <div class="weather-info">
-          <span class="weather-icon">{item.weather.icon}</span>
-          <span class="temperature">{item.weather.temperature}°C</span>
-        </div>
+        <Weather location={item.address} date={item.date} />
         <h4>{dateService.formatDateToLongDayMonth(item.date)}</h4>
         <h5>{item.address}</h5>
       </div>
@@ -72,25 +70,6 @@
 
   .timeline-heading {
     position: relative;
-  }
-
-  .weather-info {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    font-size: var(--font-size-sm);
-    color: var(--color-text-secondary);
-  }
-
-  .weather-icon {
-    margin-right: var(--spacing-xs);
-    font-size: 1.2em;
-  }
-
-  .temperature {
-    font-weight: var(--font-weight-bold);
   }
 
   .timeline-heading h4 {

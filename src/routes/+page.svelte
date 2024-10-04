@@ -2,15 +2,16 @@
   import SearchBar from "../components/home/SearchBar.svelte"
   import TravelCard from "../components/home/TravelCard.svelte"
   import { writable } from "svelte/store"
-  import { InMemoryTravelGateway } from "../gateways/TravelGateway/InMemoryTravelGateway"
+
   import { onMount } from "svelte"
   import type { Travel } from "../domain/Travel"
+  import { TravelGatewayFactory } from "../gateways/TravelGateway/TravelGateway"
 
   // Criar uma store para o termo de pesquisa
   const searchTerm = writable("")
   const showOnlyUnconcluded = writable(false)
 
-  const travelGateway = new InMemoryTravelGateway()
+  const travelGateway = TravelGatewayFactory.getInstance()
   let travels: Travel[] = []
 
   onMount(async () => {

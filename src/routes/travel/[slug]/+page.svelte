@@ -1,14 +1,14 @@
 <script lang="ts">
   import { onMount } from "svelte"
   import type { Travel } from "../../../domain/Travel"
-  import { InMemoryTravelGateway } from "../../../gateways/TravelGateway/InMemoryTravelGateway"
+  import { TravelGatewayFactory } from "../../../gateways/TravelGateway/TravelGateway"
   import { page } from "$app/stores"
   import TravelCard from "../../../components/Travel/TravelCard.svelte"
   import LoadingSpinner from "../../../components/Travel/LoadingSpinner.svelte"
   import TravelItinerary from "../../../components/Travel/TravelItinerary.svelte"
   import TravelMap from "../../../components/Travel/TravelMap.svelte"
 
-  const travelGateway = new InMemoryTravelGateway()
+  const travelGateway = TravelGatewayFactory.getInstance()
   let travel: Travel | undefined
   let selectedItineraryItem: any | undefined
 
