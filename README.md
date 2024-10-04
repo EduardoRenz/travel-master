@@ -47,3 +47,17 @@ yarn build
 ```
 
 This will generate an optimized and minified version of the application in the `dist` folder.
+
+## E2E Tests
+
+To run the E2E tests in headless mode, run:
+
+```
+npx cypress run
+```
+
+To run the E2E tests in interactive mode, run:
+
+```
+npx cypress open
+```
