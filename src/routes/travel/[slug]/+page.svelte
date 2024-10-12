@@ -7,6 +7,7 @@
   import LoadingSpinner from "../../../components/Travel/LoadingSpinner.svelte"
   import TravelItinerary from "../../../components/Travel/TravelItinerary.svelte"
   import TravelMap from "../../../components/Travel/TravelMap.svelte"
+  import TravelGeneralDocuments from "../../../components/Travel/documents/TravelGeneralDocuments.svelte"
 
   const travelGateway = TravelGatewayFactory.getInstance()
   let travel: Travel | undefined
@@ -23,7 +24,11 @@
 
 <div class="travel-container">
   {#if travel}
-    <TravelSummary {travel} />
+    <header>
+      <TravelSummary {travel} />
+      <TravelGeneralDocuments />
+    </header>
+
     <div class="travel-content">
       <div class="itinerary-column">
         <TravelItinerary {travel} on:itinerarySelected={handleItinerarySelected} />
@@ -43,9 +48,13 @@
 </div>
 
 <style>
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
   .travel-container {
-    max-width: 95%;
-    margin: 0 auto;
     padding: var(--padding-default);
   }
 
