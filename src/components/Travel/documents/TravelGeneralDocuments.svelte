@@ -1,19 +1,33 @@
-<script>
+<script lang="ts">
   let documents = [
-    { title: "Seguro Viagem", icon: "🛡️" },
-    { title: "Vacinas", icon: "💉" },
-    // { title: "Passaporte", description: "Informações sobre passaporte.", icon: "🛂" },
-    { title: "Visto", icon: "📝" },
+    { title: "Seguro Viagem", icon: "🛡️", needed: true, document_link: null },
+    { title: "Vacinas", icon: "💉", needed: false, document_link: "http://fake.it" },
+    { title: "Passaporte", icon: "🛂", needed: true, document_link: "http://fake.it" },
+    { title: "Visto", icon: "📝", needed: false, document_link: "http://fake.it" },
   ]
+
+  function toggleNeeded(index: number) {
+    documents[index].needed = !documents[index].needed
+    console.log(documents)
+  }
 </script>
 
 <div class="card content-padding">
   <h4>Documentos</h4>
   <div class="documents-grid">
-    {#each documents as document}
-      <div class="document-card">
+    {#each documents as document, index}
+      <div class="document-card" class:gray={!document.needed}>
         <div class="document-icon">{document.icon}</div>
         <div class="document-title">{document.title}</div>
+        <label>
+          <input type="checkbox" bind:checked={document.needed} on:change={() => toggleNeeded(index)} />
+          Necessário
+        </label>
+        {#if document.document_link}
+          <a href={document.document_link} target="_blank" rel="noopener noreferrer">📄</a>
+        {:else}
+          <button on:click={() => alert("Adicionar documento")}>➕ Adicionar</button>
+        {/if}
       </div>
     {/each}
   </div>
@@ -50,8 +64,7 @@
     font-weight: bold;
   }
 
-  .document-description {
-    margin-top: 0.5rem;
-    color: #666;
+  .gray {
+    background-color: #f9f9f9;
   }
 </style>
