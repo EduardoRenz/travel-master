@@ -3,7 +3,7 @@
   import type { Travel } from "../../../domain/Travel"
   import { TravelGatewayFactory } from "../../../gateways/TravelGateway/TravelGateway"
   import { page } from "$app/stores"
-  import TravelCard from "../../../components/Travel/TravelCard.svelte"
+  import TravelSummary from "../../../components/Travel/TravelSummary.svelte"
   import LoadingSpinner from "../../../components/Travel/LoadingSpinner.svelte"
   import TravelItinerary from "../../../components/Travel/TravelItinerary.svelte"
   import TravelMap from "../../../components/Travel/TravelMap.svelte"
@@ -18,13 +18,12 @@
 
   function handleItinerarySelected(event: CustomEvent<any>) {
     selectedItineraryItem = event.detail
-    console.log("Itinerário selecionado:", selectedItineraryItem)
   }
 </script>
 
 <div class="travel-container">
   {#if travel}
-    <TravelCard {travel} />
+    <TravelSummary {travel} />
     <div class="travel-content">
       <div class="itinerary-column">
         <TravelItinerary {travel} on:itinerarySelected={handleItinerarySelected} />
